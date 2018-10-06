@@ -1,10 +1,10 @@
 import React from 'react';
-import { Spinner, Intent } from '@blueprintjs/core';
-import './App.css';
+import '@blueprintjs/core/lib/css/blueprint.css';
+import { app } from './App.module.css';
 
 const App = () => (
-  <div>
-    <Spinner intent={Intent.SUCCESS}/>
+  <div className={app}>
+
   </div>
 );
 
