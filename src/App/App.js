@@ -1,5 +1,5 @@
 import React from 'react';
-import { HTMLTable, Divider, Icon } from '@blueprintjs/core';
+import { HTMLTable, Divider } from '@blueprintjs/core';
 import { app } from './App.module.scss';
 
 const App = () => (
