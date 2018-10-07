@@ -1,12 +1,13 @@
 import React from 'react';
 import { HTMLTable, Divider } from '@blueprintjs/core';
-import { app } from './App.module.scss';
+import styles from './App.module.scss';
+
+import Header from './Header';
+import Footer from './Footer';
 
 const App = () => (
-  <div className={app}>
-    <header style={{ width: '100%', height: '50px', padding: '10px', backgroundColor: '#aaa' }}>
-      Header
-    </header>
+  <div className={styles.app}>
+    <Header/>
     <section style={{ minWIdth: 800, flexGrow: 1, margin: '2em 0' }}>
       <HTMLTable bordered={true} striped={true}>
         <thead>
@@ -263,9 +264,7 @@ const App = () => (
         </tbody>
       </HTMLTable>
     </section>
-    <footer style={{ width: '100%', height: 50, padding: 10, backgroundColor: '#ccc' }}>
-      Footer
-    </footer>
+    <Footer/>
   </div>
 );
 
