@@ -5,7 +5,7 @@ import { Alignment } from '@blueprintjs/core/lib/cjs/common/alignment';
 
 export default () => (
   <header className={styles.header}>
-    <Navbar>
+    <Navbar className={styles.navbar}>
       <Navbar.Group align={Alignment.LEFT}>
         <Navbar.Heading>This is Heading</Navbar.Heading>
       </Navbar.Group>
