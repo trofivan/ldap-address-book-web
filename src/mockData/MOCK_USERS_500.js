@@ -1,3 +1,6 @@
+/**
+ * @TODO Temp Data. Remove it later!
+ */
 export default [{
   'id': 1,
   'name': 'Sven Bygreaves',
