@@ -5,7 +5,7 @@ import User from './User';
 /**
  * @TODO: Temporary fake users
  */
-import MOCK_USERS from './MOCK_USERS';
+import MOCK_USERS from './MOCK_USERS_500';
 
 export default () => (
   <HTMLTable bordered={true} interactive={true} striped={true}>
