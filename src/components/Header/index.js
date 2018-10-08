@@ -7,7 +7,7 @@ export default () => (
   <header className={styles.header}>
     <Navbar className={styles.navbar}>
       <Navbar.Group align={Alignment.LEFT}>
-        <Navbar.Heading>This is Heading</Navbar.Heading>
+        <Navbar.Heading>{process.env.REACT_APP_NAME || 'LDAP Address Book'}</Navbar.Heading>
       </Navbar.Group>
       <Navbar.Group align={Alignment.RIGHT}>
         <Button className={Classes.MINIMAL} icon="help"/>
