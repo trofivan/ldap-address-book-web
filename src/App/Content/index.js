@@ -4,7 +4,7 @@ import styles from './Content.module.scss';
 
 export default () => (
   <section className={styles.content}>
-    <HTMLTable bordered={true} striped={true}>
+    <HTMLTable bordered={true}>
       <thead>
       <tr>
         <th>Имя</th>
