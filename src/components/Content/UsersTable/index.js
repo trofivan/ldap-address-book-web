@@ -13,13 +13,47 @@ export default () => (
     <thead>
     <tr>
       <th>
-        <Select items={MOCK_USERS} item={null} title="Имя" textKey="name"/>
+        <Select items={MOCK_USERS}
+                current={null}
+                name="Имя"
+                icon="person"
+                itemsTextAttr="name"/>
       </th>
-      <th>Телефон</th>
-      <th>e-mail</th>
-      <th>Должность</th>
-      <th>Компания</th>
-      <th>Отдел</th>
+      <th>
+        <Select items={MOCK_USERS}
+                current={null}
+                name="Телефон"
+                icon="phone"
+                itemsTextAttr="phone"/>
+      </th>
+      <th>
+        <Select items={MOCK_USERS}
+                current={null}
+                name="e-mail"
+                icon="envelope"
+                itemsTextAttr="mail"/>
+      </th>
+      <th>
+        <Select items={MOCK_USERS}
+                current={null}
+                name="Должность"
+                icon="id-number"
+                itemsTextAttr="title"/>
+      </th>
+      <th>
+        <Select items={MOCK_USERS}
+                current={null}
+                name="Компания"
+                icon="office"
+                itemsTextAttr="company"/>
+      </th>
+      <th>
+        <Select items={MOCK_USERS}
+                current={null}
+                name="Отдел"
+                icon="diagram-tree"
+                itemsTextAttr="department"/>
+      </th>
     </tr>
     </thead>
     <tbody>

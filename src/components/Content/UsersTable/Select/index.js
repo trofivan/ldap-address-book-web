@@ -3,39 +3,44 @@ import { Button, Menu, MenuItem } from '@blueprintjs/core';
 import { Select } from '@blueprintjs/select';
 import styles from './Select.module.scss';
 
-const renderItem = textKey => (item, { handleClick }) => (
+const renderItem = (itemsTextAttr) => (item, { handleClick, modifiers, query }) => (
   <MenuItem
     key={item.id}
-    onClick={(e) => {
-      console.log(e);
-    }}
-    text={item[textKey]}
+    onClick={handleClick}
+    text={item[itemsTextAttr]}
   />
 );
 
-const renderList = ({ items, itemsParentRef, query, renderItem }) => {
-  const renderedItems = items.map(renderItem);
+const renderList = ({ items, query, renderItem }) => {
+  const renderedItems = items
+    .filter((el, indx) => indx < 10)
+    .map(renderItem);
 
   return (
-    <Menu className={styles.menu} ulRef={itemsParentRef}>
+    <Menu>
+      <MenuItem
+        text={renderedItems.length === items.length ? renderItem.length : `${renderedItems.length}/${items.length}`}
+        disabled={true}/>
       {renderedItems}
     </Menu>
   );
 };
 
-export default ({ items = [], item, title = '', textKey }) => (
+const handleItemSelect = (item) => {
+  console.log(item);
+};
+
+export default ({ items = [], current = null, icon, name = '', itemsTextAttr = 'name' }) => (
   <Select
-    className={styles.select}
     items={items}
-    // itemPredicate={}
+    itemRenderer={renderItem(itemsTextAttr)}
     itemListRenderer={renderList}
-    itemRenderer={renderItem(textKey)}
-    noResults={<MenuItem disabled={true} text='Нет результатов'/>}
+    onItemSelect={handleItemSelect}
+    popoverProps={{
+      popoverClassName: styles.popover,
+      targetClassName: styles['popover-target']
+    }}
   >
-    <Button
-      icon="user"
-      rightIcon="caret-down"
-      text={item ? item : title}
-    />
+    <Button text={name} icon={icon} fill={true} rightIcon="caret-down"/>
   </Select>
 );
