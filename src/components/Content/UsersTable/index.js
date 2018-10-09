@@ -17,42 +17,42 @@ export default () => (
                 current={null}
                 name="Имя"
                 icon="person"
-                itemsTextAttr="name"/>
+                attrName="name"/>
       </th>
       <th>
         <Select items={MOCK_USERS}
                 current={null}
                 name="Телефон"
                 icon="phone"
-                itemsTextAttr="phone"/>
+                attrName="phone"/>
       </th>
       <th>
         <Select items={MOCK_USERS}
                 current={null}
                 name="e-mail"
                 icon="envelope"
-                itemsTextAttr="mail"/>
+                attrName="mail"/>
       </th>
       <th>
         <Select items={MOCK_USERS}
                 current={null}
                 name="Должность"
                 icon="id-number"
-                itemsTextAttr="title"/>
+                attrName="title"/>
       </th>
       <th>
         <Select items={MOCK_USERS}
                 current={null}
                 name="Компания"
                 icon="office"
-                itemsTextAttr="company"/>
+                attrName="company"/>
       </th>
       <th>
         <Select items={MOCK_USERS}
                 current={null}
                 name="Отдел"
                 icon="diagram-tree"
-                itemsTextAttr="department"/>
+                attrName="department"/>
       </th>
     </tr>
     </thead>

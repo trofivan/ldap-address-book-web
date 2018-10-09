@@ -3,12 +3,13 @@ import { Button, Menu, MenuItem } from '@blueprintjs/core';
 import { Select } from '@blueprintjs/select';
 import styles from './Select.module.scss';
 
-export default ({ items = [], current = null, icon, name = '', itemsTextAttr = 'name' }) => {
+export default ({ items = [], current = null, icon, name = '', attrName = 'name' }) => {
+
   const renderItem = (item, { handleClick, modifiers, query }) => (
     <MenuItem
       key={item.id}
       onClick={handleClick}
-      text={item[itemsTextAttr]}
+      text={item[attrName]}
     />
   );
 
@@ -31,25 +32,25 @@ export default ({ items = [], current = null, icon, name = '', itemsTextAttr = '
     // console.log(item);
   };
 
-  const filterItems = (query, item) => {
-    return false;
-    // console.log(query, item)
-  };
+  const filterItem = (query = '', item = '') => {
+    return `${item[attrName]}`.toLowerCase().indexOf(query.toLowerCase()) >= 0;
+  }
 
   return (
     <Select
       items={items}
-      itemPredicate={filterItems}
+      itemPredicate={filterItem}
       itemRenderer={renderItem}
-      itemListRenderer={renderList}
+      noResults={<MenuItem disabled={true} text="Нет результатов..."/>}
+      // itemListRenderer={renderList}
       onItemSelect={handleItemSelect}
-      popoverProps={{
-        // className: 'myClassName',
-
-        popoverClassName: styles.popover,
-        portalClassName: 'myPortalClassName'
-        // targetClassName: styles['popover-target']
-      }}
+      // popoverProps={{
+      //   // className: 'myClassName',
+      //
+      //   // popoverClassName: styles.popover,
+      //   // portalClassName: 'myPortalClassName'
+      //   // targetClassName: styles['popover-target']
+      // }}
     >
       <Button text={name} icon={icon} fill={true} rightIcon="caret-down"/>
     </Select>
