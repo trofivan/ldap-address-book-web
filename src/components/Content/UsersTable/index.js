@@ -6,53 +6,53 @@ import User from './User';
 /**
  * @TODO: Temporary fake users
  */
-import MOCK_USERS from '../../../mockData/MOCK_USERS_500';
+import MOCK_USERS from '../../../mockData/MOCK_USERS_2500';
 
 export default () => (
   <HTMLTable bordered={true} interactive={true} striped={true}>
     <thead>
     <tr>
       <th>
-        <Select items={MOCK_USERS}
+        <Select items={MOCK_USERS.map(el => el.name)}
                 current={null}
                 name="Имя"
                 icon="person"
                 attrName="name"/>
       </th>
       <th>
-        <Select items={MOCK_USERS}
-                current={null}
-                name="Телефон"
-                icon="phone"
-                attrName="phone"/>
+        {/*<Select items={MOCK_USERS.map(u => u.phone)}*/}
+        {/*current={null}*/}
+        {/*name="Телефон"*/}
+        {/*icon="phone"*/}
+        {/*attrName="phone"/>*/}
       </th>
       <th>
-        <Select items={MOCK_USERS}
+        <Select items={MOCK_USERS.map(u => u.mail)}
                 current={null}
                 name="e-mail"
                 icon="envelope"
                 attrName="mail"/>
       </th>
       <th>
-        <Select items={MOCK_USERS}
+        <Select items={MOCK_USERS.map(u => u.title)}
                 current={null}
                 name="Должность"
                 icon="id-number"
                 attrName="title"/>
       </th>
       <th>
-        <Select items={MOCK_USERS}
-                current={null}
-                name="Компания"
-                icon="office"
-                attrName="company"/>
+        {/*<Select items={MOCK_USERS}*/}
+        {/*current={null}*/}
+        {/*name="Компания"*/}
+        {/*icon="office"*/}
+        {/*attrName="company"/>*/}
       </th>
       <th>
-        <Select items={MOCK_USERS}
-                current={null}
-                name="Отдел"
-                icon="diagram-tree"
-                attrName="department"/>
+        {/*<Select items={MOCK_USERS}*/}
+        {/*current={null}*/}
+        {/*name="Отдел"*/}
+        {/*icon="diagram-tree"*/}
+        {/*attrName="department"/>*/}
       </th>
     </tr>
     </thead>

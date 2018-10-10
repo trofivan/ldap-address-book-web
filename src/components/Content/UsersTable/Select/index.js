@@ -1,59 +1,46 @@
 import React from 'react';
-import { Button, Menu, MenuItem } from '@blueprintjs/core';
-import { Select } from '@blueprintjs/select';
+import { Button, InputGroup, Menu, MenuItem, Popover } from '@blueprintjs/core';
 import styles from './Select.module.scss';
 
-export default ({ items = [], current = null, icon, name = '', attrName = 'name' }) => {
+const renderItem = (text, key) => <MenuItem key={key} text={text}/>;
 
-  const renderItem = (item, { handleClick, modifiers, query }) => (
-    <MenuItem
-      key={item.id}
-      onClick={handleClick}
-      text={item[attrName]}
-    />
-  );
+const getVisibleItems = (items) => items.filter((item, i) => i < 10);
+const getFilteredItems = (items, query = '') => items
+  .filter(item => `${item.toLowerCase()}`.includes(query.toLowerCase()));
 
-  const renderList = ({ items, query, renderItem }) => {
-    const renderedItems = items
-      .filter((el, indx) => indx < 10)
-      .map(renderItem);
+const PopoverContent = ({ items, query = '', onChangeFilter }) => {
 
-    return (
-      <Menu>
-        <MenuItem
-          text={renderedItems.length === items.length ? renderItem.length : `${renderedItems.length}/${items.length}`}
-          disabled={true}/>
-        {renderedItems}
-      </Menu>
-    );
-  };
-
-  const handleItemSelect = (item) => {
-    // console.log(item);
-  };
-
-  const filterItem = (query = '', item = '') => {
-    return `${item[attrName]}`.toLowerCase().indexOf(query.toLowerCase()) >= 0;
-  }
+  const filteredItems = getFilteredItems(items, query);
+  const visibleItems = getVisibleItems(filteredItems);
 
   return (
-    <Select
-      items={items}
-      itemPredicate={filterItem}
-      itemRenderer={renderItem}
-      noResults={<MenuItem disabled={true} text="Нет результатов..."/>}
-      // itemListRenderer={renderList}
-      onItemSelect={handleItemSelect}
-      // popoverProps={{
-      //   // className: 'myClassName',
-      //
-      //   // popoverClassName: styles.popover,
-      //   // portalClassName: 'myPortalClassName'
-      //   // targetClassName: styles['popover-target']
-      // }}
-    >
-      <Button text={name} icon={icon} fill={true} rightIcon="caret-down"/>
-    </Select>
+    <div className={styles['popover-content']}>
+      <InputGroup leftIcon="search" onChange={(e) => onChangeFilter(e.target.value)}/>
+      <Menu>
+        {visibleItems.map(renderItem)}
+        {visibleItems.length < items.length ?
+          <MenuItem disabled={true} text={`и ещё ${items.length - visibleItems.length}...`}/> : ''}
+      </Menu>
+    </div>
   );
+};
 
+export default class Select extends React.Component {
+  state = {
+    items: this.props.items,
+    query: ''
+  };
+
+  handleChangeFilter = (query) => {
+    this.setState({ query });
+  };
+
+  render() {
+    return (
+      <Popover targetClassName={styles['popover-target']}>
+        <Button icon={this.props.icon} text={this.props.name} fill={true} rightIcon="chevron-down"/>
+        <PopoverContent items={this.state.items} query={this.state.query} onChangeFilter={this.handleChangeFilter}/>
+      </Popover>
+    );
+  }
 }
