@@ -14,17 +14,20 @@ export default () => (
     <tr>
       <th>
         <Select items={MOCK_USERS.map(el => el.name)}
-                current={null}
+                itemSelect={null}
+                onItemSelect={(item) => {
+                  console.log(item);
+                }}
                 name="Имя"
                 icon="person"
                 attrName="name"/>
       </th>
       <th>
-        {/*<Select items={MOCK_USERS.map(u => u.phone)}*/}
-        {/*current={null}*/}
-        {/*name="Телефон"*/}
-        {/*icon="phone"*/}
-        {/*attrName="phone"/>*/}
+        <Select items={MOCK_USERS.reduce((acc, u) => [...acc, u.phone, u.ipPhone, u.mobile], [])}
+                current={null}
+                name="Телефон"
+                icon="phone"
+                attrName="phone"/>
       </th>
       <th>
         <Select items={MOCK_USERS.map(u => u.mail)}
@@ -41,18 +44,18 @@ export default () => (
                 attrName="title"/>
       </th>
       <th>
-        {/*<Select items={MOCK_USERS}*/}
-        {/*current={null}*/}
-        {/*name="Компания"*/}
-        {/*icon="office"*/}
-        {/*attrName="company"/>*/}
+        <Select items={MOCK_USERS.map(u => u.company)}
+                current={null}
+                name="Компания"
+                icon="office"
+                attrName="company"/>
       </th>
       <th>
-        {/*<Select items={MOCK_USERS}*/}
-        {/*current={null}*/}
-        {/*name="Отдел"*/}
-        {/*icon="diagram-tree"*/}
-        {/*attrName="department"/>*/}
+        <Select items={MOCK_USERS.map(u => u.department)}
+                current={null}
+                name="Отдел"
+                icon="diagram-tree"
+                attrName="department"/>
       </th>
     </tr>
     </thead>
