@@ -1,73 +1,64 @@
-import React from 'react';
+import * as React from 'react';
 import { Button, InputGroup, Menu, MenuItem, Popover } from '@blueprintjs/core';
 import styles from './Select.module.scss';
 
-const getVisibleItems = (items) => items.filter((item, i) => i < 10);
-const getFilteredItems = (items, query = '') => items
-  .filter(item => `${item}`.toLowerCase().includes(query.toLowerCase()));
-const getUniqItems = (items = []) => [...new Set(items)];
-const getNotEmptyItems = (items = []) => items.filter(item => item);
+const PopoverButton = ({ icon, name }) => <Button text={name} icon={icon} fill={true} rightIcon="chevron-down"/>;
 
-const PopoverContent = ({ items, query = '', onChangeFilter, onItemSelect }) => {
-  const notEmptyItems = getNotEmptyItems(items).sort();
-  const filteredItems = getFilteredItems(notEmptyItems, query);
-  const uniqItems = getUniqItems(filteredItems);
-  const visibleItems = getVisibleItems(uniqItems);
+class PopoverContent extends React.Component {
+  state = { query: '' };
 
-  return (
-    <div className={styles['popover-content']}>
-      <InputGroup placeholder="Фильтр..." leftIcon="search" onChange={(e) => onChangeFilter(e.target.value)}/>
-      <Menu>
-        {visibleItems.map((text, key) =>
-          <MenuItem
-            key={key}
-            text={text}
-            onClick={() => {
-              onItemSelect(text);
-            }}
-          />)}
-
-        {visibleItems.length < uniqItems.length ?
-          <MenuItem disabled={true} text={`и ещё ${uniqItems.length - visibleItems.length}...`}/> : ''}
-
-        {visibleItems.length === 0 ? <MenuItem disabled={true} text="Ничего не найдено"/> : ''}
-      </Menu>
-    </div>
-  );
-};
-
-export default class Select extends React.Component {
-  state = {
-    items: this.props.items,
-    itemSelect: this.props.itemSelect,
-    query: ''
-  };
-
-  handleChangeFilter = (query) => {
+  handleChangeQuery = (query) => {
     this.setState({ query });
   };
 
-  handleSelectItem = (itemSelect) => {
-    this.setState({ itemSelect }, () => {
-      this.props.onItemSelect(itemSelect);
+  getFilteredItems = () =>
+    this.props.items
+      .filter(item => `${item}`.toLowerCase().includes(this.state.query.toLowerCase()));
+
+  getVisibleItems = (items) => items.slice(0, 10);
+
+  render() {
+    const filteredItems = this.getFilteredItems();
+    const visibleItems = this.getVisibleItems(filteredItems);
+
+    return (
+      <div className={styles['popover-content']}>
+        <InputGroup
+          placeholder="Фильтр..."
+          leftIcon="search"
+          onChange={(e) => this.handleChangeQuery(e.target.value)}
+        />
+        <Menu>
+          {visibleItems.length === 0 ? <MenuItem disabled={true} text={`Ничего не найдено`}/> : ''}
+          {visibleItems.map((item, key) => <MenuItem
+            key={key}
+            text={item}
+            onClick={() => this.props.onItemClick(item)}/>)
+          }
+          {visibleItems < filteredItems ?
+            <MenuItem disabled={true} text={`и ещё ${filteredItems.length - visibleItems.length}...`}/> : ''}
+        </Menu>
+      </div>
+    );
+  }
+}
+
+export default class Select extends React.Component {
+  state = { selected: '' };
+
+  handleItemSelect = (item) => {
+    this.setState({
+      selected: item
+    }, () => {
+      this.props.onItemSelect(item);
     });
   };
 
   render() {
     return (
-      <Popover targetClassName={styles['popover-target']}>
-        <Button
-          icon={this.props.icon}
-          text={this.state.itemSelect ? this.state.itemSelect : this.props.name}
-          fill={true}
-          rightIcon="chevron-down"
-        />
-        <PopoverContent
-          items={this.state.items}
-          query={this.state.query}
-          onChangeFilter={this.handleChangeFilter}
-          onItemSelect={this.handleSelectItem}
-        />
+      <Popover targetClassName={styles['popover-target']} onOpened={() => console.log('onOpened')}>
+        <PopoverButton icon={this.props.icon} name={this.state.selected ? this.state.selected : this.props.name}/>
+        <PopoverContent onItemClick={this.handleItemSelect} items={this.props.items}/>
       </Popover>
     );
   }
