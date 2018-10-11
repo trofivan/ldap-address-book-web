@@ -1,13 +1,27 @@
-export default [{
-  'id': 1,
-  'name': 'Sven Bygreaves',
-  'phone': '+351 (997) 675-2630',
-  'mobile': '+55 655 666 5228',
-  'mail': 'sbygreaves0@admin.ch',
-  'title': 'Senior Financial Analyst',
-  'company': 'Topicstorm',
-  'department': 'Product Management'
-},
+/**
+ * @TODO: Temp data. Remove it later!
+ */
+export default [
+  {
+    'id': 0,
+    'name': 'Sven Bygreaves',
+    'phone': '+351 (997) 675-2630',
+    'mobile': '+55 655 666 5228',
+    'mail': 'sbygreaves0@admin.ch',
+    'title': 'Senior Financial Analyst',
+    'company': 'Topicstorm',
+    'department': 'Product Management'
+  },
+  {
+    'id': 1,
+    'name': 'Sven Bygreaves',
+    'phone': '+351 (997) 675-2630',
+    'mobile': '+55 655 666 5228',
+    'mail': 'sbygreaves0@admin.ch',
+    'title': 'Senior Financial Analyst',
+    'company': 'Topicstorm',
+    'department': 'Product Management'
+  },
   {
     'id': 2,
     'name': 'Lulu Hembrow',
