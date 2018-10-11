@@ -2,7 +2,8 @@ import * as React from 'react';
 import { Button, InputGroup, Menu, MenuItem, Popover } from '@blueprintjs/core';
 import styles from './Select.module.scss';
 
-const PopoverButton = ({ icon, name }) => <Button text={name} icon={icon} fill={true} rightIcon="chevron-down"/>;
+const PopoverButton = ({ icon, name }) =>
+  <Button minimal={true} text={name} icon={icon} fill={true} rightIcon="chevron-down"/>;
 
 class PopoverContent extends React.Component {
   state = { query: '' };
@@ -56,7 +57,7 @@ export default class Select extends React.Component {
 
   render() {
     return (
-      <Popover targetClassName={styles['popover-target']} onOpened={() => console.log('onOpened')}>
+      <Popover targetClassName={styles['popover-target']}>
         <PopoverButton icon={this.props.icon} name={this.state.selected ? this.state.selected : this.props.name}/>
         <PopoverContent onItemClick={this.handleItemSelect} items={this.props.items}/>
       </Popover>

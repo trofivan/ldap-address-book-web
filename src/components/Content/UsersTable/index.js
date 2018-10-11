@@ -7,21 +7,6 @@ import User from './User';
  * @TODO: Temporary fake users
  */
 import MOCK_USERS from '../../../mockData/MOCK_USERS_2500';
-// import MOCK_DATA from '../../../mockData/MOCK_USERS_200_WITH_NULL';
-
-// const MOCK_DATA_ARRAY = MOCK_DATA
-//   .reduce((acc, item) => [
-//     ...acc,
-//     item.id,
-//     item.name,
-//     item.phone,
-//     item.mobile,
-//     item.company,
-//     item.title,
-//     item.mail,
-//     item.department
-//   ], [])
-//   .filter(item => item);
 
 export default () => (
   <HTMLTable bordered={true} interactive={true} striped={true}>
@@ -56,32 +41,60 @@ export default () => (
         />
       </th>
       <th>
-        {/*<SelectOld items={MOCK_USERS.map(u => u.mail)}*/}
-        {/*current={null}*/}
-        {/*name="e-mail"*/}
-        {/*icon="envelope"*/}
-        {/*attrName="mail"/>*/}
+        <Select
+          items={
+            MOCK_USERS
+              .map(item => item.mail)
+              .filter(item => item)
+          }
+          name="e-mail"
+          icon="envelope"
+          onItemSelect={(item) => {
+            console.log(item);
+          }}
+        />
       </th>
       <th>
-        {/*<SelectOld items={MOCK_USERS.map(u => u.title)}*/}
-        {/*current={null}*/}
-        {/*name="Должность"*/}
-        {/*icon="id-number"*/}
-        {/*attrName="title"/>*/}
+        <Select
+          items={
+            MOCK_USERS
+              .map(item => item.title)
+              .filter(item => item)
+          }
+          name="Должность"
+          icon="id-number"
+          onItemSelect={(item) => {
+            console.log(item);
+          }}
+        />
       </th>
       <th>
-        {/*<SelectOld items={MOCK_USERS.map(u => u.company)}*/}
-        {/*current={null}*/}
-        {/*name="Компания"*/}
-        {/*icon="office"*/}
-        {/*attrName="company"/>*/}
+        <Select
+          items={
+            MOCK_USERS
+              .map(item => item.company)
+              .filter(item => item)
+          }
+          name="Компания"
+          icon="office"
+          onItemSelect={(item) => {
+            console.log(item);
+          }}
+        />
       </th>
       <th>
-        {/*<SelectOld items={MOCK_USERS.map(u => u.department)}*/}
-        {/*current={null}*/}
-        {/*name="Отдел"*/}
-        {/*icon="diagram-tree"*/}
-        {/*attrName="department"/>*/}
+        <Select
+          items={
+            MOCK_USERS
+              .map(item => item.department)
+              .filter(item => item)
+          }
+          name="Отдел"
+          icon="diagram-tree"
+          onItemSelect={(item) => {
+            console.log(item);
+          }}
+        />
       </th>
     </tr>
     </thead>
