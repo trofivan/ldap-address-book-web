@@ -16,7 +16,7 @@ class PopoverContent extends React.Component {
     this.props.items
       .filter(item => `${item}`.toLowerCase().includes(this.state.query.toLowerCase()));
 
-  getVisibleItems = (items) => items.slice(0, 10);
+  getVisibleItems = (items) => items.slice(0, 12);
 
   render() {
     const filteredItems = this.getFilteredItems();

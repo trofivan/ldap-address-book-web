@@ -56,11 +56,7 @@ export default () => (
       </th>
       <th>
         <Select
-          items={
-            MOCK_USERS
-              .map(item => item.title)
-              .filter(item => item)
-          }
+          items={[...new Set(MOCK_USERS.map(item => item.title).filter(item => item))]}
           name="Должность"
           icon="id-number"
           onItemSelect={(item) => {
@@ -70,11 +66,7 @@ export default () => (
       </th>
       <th>
         <Select
-          items={
-            MOCK_USERS
-              .map(item => item.company)
-              .filter(item => item)
-          }
+          items={[...new Set(MOCK_USERS.map(item => item.company).filter(item => item))]}
           name="Компания"
           icon="office"
           onItemSelect={(item) => {
@@ -84,11 +76,7 @@ export default () => (
       </th>
       <th>
         <Select
-          items={
-            MOCK_USERS
-              .map(item => item.department)
-              .filter(item => item)
-          }
+          items={[...new Set(MOCK_USERS.map(item => item.department).filter(item => item))]}
           name="Отдел"
           icon="diagram-tree"
           onItemSelect={(item) => {
