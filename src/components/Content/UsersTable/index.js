@@ -1,26 +1,50 @@
 import React from 'react';
 import { HTMLTable } from '@blueprintjs/core';
 import Select from './Select';
+import Select2 from './Select2';
 import User from './User';
 
 /**
  * @TODO: Temporary fake users
  */
 import MOCK_USERS from '../../../mockData/MOCK_USERS_2500';
+import MOCK_DATA from '../../../mockData/MOCK_USERS_200_WITH_NULL';
+
+const MOCK_DATA_ARRAY = MOCK_DATA
+  .reduce((acc, item) => [
+    ...acc,
+    item.id,
+    item.name,
+    item.phone,
+    item.mobile,
+    item.company,
+    item.title,
+    item.mail,
+    item.department
+  ], [])
+  .filter(item => item);
 
 export default () => (
   <HTMLTable bordered={true} interactive={true} striped={true}>
     <thead>
     <tr>
       <th>
-        <Select items={MOCK_USERS.map(el => el.name)}
-                itemSelect={null}
-                onItemSelect={(item) => {
-                  console.log(item);
-                }}
-                name="Имя"
-                icon="person"
-                attrName="name"/>
+        <Select2
+          items={MOCK_DATA_ARRAY}
+          name={`Имя`}
+          icon={`person`}
+          onItemSelect={(item) => {
+            console.log(item);
+          }}
+        />
+        {/*<Select items={MOCK_USERS.map(el => el.name)}*/}
+        {/*itemSelect={null}*/}
+        {/*onItemSelect={(item) => {*/}
+        {/*console.log(item);*/}
+        {/*}}*/}
+        {/*name="Имя"*/}
+        {/*icon="person"*/}
+        {/*attrName="name"/>*/}
       </th>
       <th>
         <Select items={MOCK_USERS.reduce((acc, u) => [...acc, u.phone, u.ipPhone, u.mobile], [])}
