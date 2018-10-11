@@ -57,10 +57,30 @@ export default class Select extends React.Component {
 
   render() {
     return (
-      <Popover targetClassName={styles['popover-target']}>
-        <PopoverButton icon={this.props.icon} name={this.state.selected ? this.state.selected : this.props.name}/>
-        <PopoverContent onItemClick={this.handleItemSelect} items={this.props.items}/>
-      </Popover>
+      <>
+        {
+          this.state.selected ?
+            <Button
+              minimal={true}
+              intent={'danger'}
+              text={this.state.selected}
+              icon={this.props.icon}
+              fill={true}
+              rightIcon={'cross'}
+              onClick={() => this.handleItemSelect('')}
+            /> :
+            <Popover targetClassName={styles['popover-target']}>
+              <PopoverButton
+                icon={this.props.icon}
+                name={this.state.selected ? this.state.selected : this.props.name}
+              />
+              <PopoverContent
+                onItemClick={this.handleItemSelect}
+                items={this.props.items}
+              />
+            </Popover>
+        }
+      </>
     );
   }
 }
