@@ -1,7 +1,6 @@
 import React from 'react';
 import { HTMLTable } from '@blueprintjs/core';
-import Select from '../../../containers/Select';
-import SelectUsers from '../../../containers/SelectUsers';
+import { SelectUser, SelectMail, SelectPhones, SelectTitle } from '../../../containers/Select';
 import User from './User';
 
 /**
@@ -14,65 +13,36 @@ export default () => (
     <thead>
     <tr>
       <th>
-        <SelectUsers/>
+        <SelectUser/>
       </th>
       <th>
-        <Select
-          items={
-            MOCK_USERS
-              .reduce((acc, u) => [...acc, u.phone, u.ipPhone, u.mobile], [])
-              .filter(item => item)
-          }
-          name="Телефон"
-          icon="phone"
-          onItemSelect={(item) => {
-            console.log(item);
-          }}
-        />
+        <SelectPhones/>
       </th>
       <th>
-        <Select
-          items={
-            MOCK_USERS
-              .map(item => item.mail)
-              .filter(item => item)
-          }
-          name="e-mail"
-          icon="envelope"
-          onItemSelect={(item) => {
-            console.log(item);
-          }}
-        />
+        <SelectMail/>
       </th>
       <th>
-        <Select
-          items={[...new Set(MOCK_USERS.map(item => item.title).filter(item => item))]}
-          name="Должность"
-          icon="id-number"
-          onItemSelect={(item) => {
-            console.log(item);
-          }}
-        />
+        <SelectTitle/>
       </th>
       <th>
-        <Select
-          items={[...new Set(MOCK_USERS.map(item => item.company).filter(item => item))]}
-          name="Компания"
-          icon="office"
-          onItemSelect={(item) => {
-            console.log(item);
-          }}
-        />
+        {/*<Select*/}
+        {/*items={[...new Set(MOCK_USERS.map(item => item.company).filter(item => item))]}*/}
+        {/*name="Компания"*/}
+        {/*icon="office"*/}
+        {/*onItemSelect={(item) => {*/}
+        {/*console.log(item);*/}
+        {/*}}*/}
+        {/*/>*/}
       </th>
       <th>
-        <Select
-          items={[...new Set(MOCK_USERS.map(item => item.department).filter(item => item))]}
-          name="Отдел"
-          icon="diagram-tree"
-          onItemSelect={(item) => {
-            console.log(item);
-          }}
-        />
+        {/*<Select*/}
+        {/*items={[...new Set(MOCK_USERS.map(item => item.department).filter(item => item))]}*/}
+        {/*name="Отдел"*/}
+        {/*icon="diagram-tree"*/}
+        {/*onItemSelect={(item) => {*/}
+        {/*console.log(item);*/}
+        {/*}}*/}
+        {/*/>*/}
       </th>
     </tr>
     </thead>

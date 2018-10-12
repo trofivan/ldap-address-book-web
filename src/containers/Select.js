@@ -1,10 +1,103 @@
+import React from 'react';
 import { connect } from 'react-redux';
+import { actionSetFilter } from '../actions';
 import Select from '../components/Select';
 
-const mapStateToProps = state => ({});
-const mapDispatchToProps = dispatch => ({});
+const removeDuplicates = (items = []) => [...new Set(items)];
+const mapDispatchToProps = (dispatch) => ({
+  setFilter: (filterKey, filterValue) => dispatch(actionSetFilter({ [filterKey]: filterValue }))
+});
 
-export default connect(
-  mapStateToProps,
+/**
+ * Names
+ */
+const getUserNames = users => users.map(item => item.name).filter(item => item);
+
+const mapStateToPropsUsers = ({ users }) => ({
+  items: removeDuplicates(getUserNames(users))
+});
+
+const Users = ({ items, setFilter }) => (
+  <Select
+    items={items}
+    name={`Имя`}
+    icon={`person`}
+    onItemSelect={(item) => setFilter('name', item)}
+  />
+);
+
+export const SelectUser = connect(
+  mapStateToPropsUsers,
   mapDispatchToProps
-)(Select);
+)(Users);
+
+/**
+ * E-Mails
+ */
+const getMails = users => users.map((item) => item.mail).filter(item => item);
+
+const mapStateToPropsMail = ({ users }) => ({
+  items: removeDuplicates(getMails(users))
+});
+
+const Mails = ({ items, setFilter }) => (
+  <Select
+    items={items}
+    name={`e-mail`}
+    icon={`envelope`}
+    onItemSelect={(item) => setFilter('mail', item)}
+  />
+);
+
+export const SelectMail = connect(
+  mapStateToPropsMail,
+  mapDispatchToProps
+)(Mails);
+
+/**
+ * Phones
+ */
+const getPhones = (users) => users
+  .reduce((acc, u) => [...acc, u.phone, u.ipPhone, u.mobile], [])
+  .filter(item => item);
+
+const mapStateToPropsPhones = ({ users }) => ({
+  items: removeDuplicates(getPhones(users))
+});
+
+const Phones = ({ items, setFilter }) => (
+  <Select
+    items={items}
+    name="Телефон"
+    icon="phone"
+    onItemSelect={(item) => setFilter('phone', item)}
+  />
+);
+
+export const SelectPhones = connect(
+  mapStateToPropsPhones,
+  mapDispatchToProps
+)(Phones);
+
+/**
+ * Titles
+ */
+const getTitles = (users) => users.map(item => item.title).filter(item => item);
+
+const mapStateToPropsTitles = ({ users }) => ({
+  items: removeDuplicates(getTitles(users))
+});
+
+const Titles = ({ items, setFilter }) => (
+  <Select
+    items={items}
+    name="Должность"
+    icon="id-number"
+    onItemSelect={(item) => setFilter('title', item)}
+  />
+);
+
+export const SelectTitle = connect(
+  mapStateToPropsTitles,
+  mapDispatchToProps
+)(Titles);
