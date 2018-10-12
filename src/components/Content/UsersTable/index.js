@@ -1,6 +1,7 @@
 import React from 'react';
 import { HTMLTable } from '@blueprintjs/core';
-import Select from './Select';
+import Select from '../../../containers/Select';
+import SelectUsers from '../../../containers/SelectUsers';
 import User from './User';
 
 /**
@@ -13,18 +14,7 @@ export default () => (
     <thead>
     <tr>
       <th>
-        <Select
-          items={
-            MOCK_USERS
-              .map(item => item.name)
-              .filter(item => item)
-          }
-          name={`Имя`}
-          icon={`person`}
-          onItemSelect={(item) => {
-            console.log(item);
-          }}
-        />
+        <SelectUsers/>
       </th>
       <th>
         <Select

@@ -1,14 +1,8 @@
 import { combineReducers } from 'redux';
-import { ACTION_TEST } from '../actions';
+import filter from './filter';
+import users from './users';
 
-const reducerTest = (state = 'stateTest', action) => {
-  switch (action.type) {
-    case ACTION_TEST:
-      console.log(action);
-      return 'newStateTest';
-    default:
-      return state;
-  }
-};
-
-export default combineReducers({ reducerTest });
+export default combineReducers({
+  filter,
+  users
+});
