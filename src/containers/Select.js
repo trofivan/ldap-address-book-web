@@ -101,3 +101,50 @@ export const SelectTitle = connect(
   mapStateToPropsTitles,
   mapDispatchToProps
 )(Titles);
+
+/**
+ * Companies
+ */
+const getCompanies = (users) => users.map(item => item.company).filter(item => item);
+
+const mapStateToPropsCompanies = ({ users }) => ({
+  items: removeDuplicates(getCompanies(users))
+});
+
+const Companies = ({ items, setFilter }) => (
+  <Select
+    items={items}
+    name="Компания"
+    icon="office"
+    onItemSelect={(item) => setFilter('company', item)}
+  />
+);
+
+export const SelectCompany = connect(
+  mapStateToPropsCompanies,
+  mapDispatchToProps
+)(Companies);
+
+
+/**
+ * Departments
+ */
+const getDepartments = (users) => users.map(item => item.department).filter(item => item);
+
+const mapStateToPropsDepartments = ({ users }) => ({
+  items: removeDuplicates(getDepartments(users))
+});
+
+const Departments = ({ items, setFilter }) => (
+  <Select
+    items={items}
+    name="Отдел"
+    icon="diagram-tree"
+    onItemSelect={(item) => setFilter('department', item)}
+  />
+);
+
+export const SelectDepartment = connect(
+  mapStateToPropsDepartments,
+  mapDispatchToProps
+)(Departments);

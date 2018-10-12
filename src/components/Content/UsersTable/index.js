@@ -1,6 +1,13 @@
 import React from 'react';
 import { HTMLTable } from '@blueprintjs/core';
-import { SelectUser, SelectMail, SelectPhones, SelectTitle } from '../../../containers/Select';
+import {
+  SelectUser,
+  SelectMail,
+  SelectPhones,
+  SelectTitle,
+  SelectCompany,
+  SelectDepartment
+} from '../../../containers/Select';
 import User from './User';
 
 /**
@@ -25,24 +32,10 @@ export default () => (
         <SelectTitle/>
       </th>
       <th>
-        {/*<Select*/}
-        {/*items={[...new Set(MOCK_USERS.map(item => item.company).filter(item => item))]}*/}
-        {/*name="Компания"*/}
-        {/*icon="office"*/}
-        {/*onItemSelect={(item) => {*/}
-        {/*console.log(item);*/}
-        {/*}}*/}
-        {/*/>*/}
+        <SelectCompany/>
       </th>
       <th>
-        {/*<Select*/}
-        {/*items={[...new Set(MOCK_USERS.map(item => item.department).filter(item => item))]}*/}
-        {/*name="Отдел"*/}
-        {/*icon="diagram-tree"*/}
-        {/*onItemSelect={(item) => {*/}
-        {/*console.log(item);*/}
-        {/*}}*/}
-        {/*/>*/}
+        <SelectDepartment/>
       </th>
     </tr>
     </thead>
