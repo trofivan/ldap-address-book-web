@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Button, InputGroup, Menu, MenuItem, Popover } from '@blueprintjs/core';
+import pluralize from '../../libs/pluralize';
 import styles from './Select.module.scss';
 
 const PopoverButton = ({ icon, name }) =>
@@ -21,6 +22,7 @@ class PopoverContent extends React.Component {
   render() {
     const filteredItems = this.getFilteredItems();
     const visibleItems = this.getVisibleItems(filteredItems);
+    const tailItemsCount = filteredItems.length - visibleItems.length;
 
     return (
       <div className={styles['popover-content']}>
@@ -37,7 +39,8 @@ class PopoverContent extends React.Component {
             onClick={() => this.props.onItemClick(item)}/>)
           }
           {visibleItems < filteredItems ?
-            <MenuItem disabled={true} text={`и ещё ${filteredItems.length - visibleItems.length}...`}/> : ''}
+            <MenuItem disabled={true}
+                      text={`и ещё ${pluralize(tailItemsCount, ['элемент', 'элемента', 'элементов'])}...`}/> : ''}
         </Menu>
       </div>
     );
