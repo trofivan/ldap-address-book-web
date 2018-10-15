@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { actionSetFilter } from '../actions';
 import { Phones, Companies, Departments, Mails, Titles, Users } from '../components/Filters';
+import filterUsers from '../libs/filterUsers';
 
 /**
  * Reusable functions
@@ -13,10 +14,13 @@ const mapDispatchToProps = (dispatch) => ({
 /**
  * Names
  */
-const getUserNames = users => users.map(item => item.name).filter(item => item);
+const getUserNames = (users, filter) =>
+  filterUsers(users, filter)
+    .map(item => item.name)
+    .filter(item => item);
 
-const mapStateToPropsUsers = ({ users }) => ({
-  items: removeDuplicates(getUserNames(users.items))
+const mapStateToPropsUsers = ({ users, filter }) => ({
+  items: removeDuplicates(getUserNames(users.items, filter))
 });
 
 const FilterUsers = connect(
@@ -27,10 +31,13 @@ const FilterUsers = connect(
 /**
  * E-Mails
  */
-const getMails = users => users.map((item) => item.mail).filter(item => item);
+const getMails = (users, filter) =>
+  filterUsers(users, filter)
+    .map((item) => item.mail)
+    .filter(item => item);
 
-const mapStateToPropsMail = ({ users }) => ({
-  items: removeDuplicates(getMails(users.items))
+const mapStateToPropsMail = ({ users, filter }) => ({
+  items: removeDuplicates(getMails(users.items, filter))
 });
 
 const FilterMails = connect(
@@ -41,12 +48,13 @@ const FilterMails = connect(
 /**
  * Phones
  */
-const getPhones = (users) => users
-  .reduce((acc, u) => [...acc, u.phone, u.ipPhone, u.mobile], [])
-  .filter(item => item);
+const getPhones = (users, filter) =>
+  filterUsers(users, filter)
+    .reduce((acc, u) => [...acc, u.phone, u.ipPhone, u.mobile], [])
+    .filter(item => item);
 
-const mapStateToPropsPhones = ({ users }) => ({
-  items: removeDuplicates(getPhones(users.items))
+const mapStateToPropsPhones = ({ users, filter }) => ({
+  items: removeDuplicates(getPhones(users.items, filter))
 });
 
 const FilterPhones = connect(
@@ -57,10 +65,13 @@ const FilterPhones = connect(
 /**
  * Titles
  */
-const getTitles = (users) => users.map(item => item.title).filter(item => item);
+const getTitles = (users, filter) =>
+  filterUsers(users, filter)
+    .map(item => item.title)
+    .filter(item => item);
 
-const mapStateToPropsTitles = ({ users }) => ({
-  items: removeDuplicates(getTitles(users.items))
+const mapStateToPropsTitles = ({ users, filter }) => ({
+  items: removeDuplicates(getTitles(users.items, filter))
 });
 
 const FilterTitles = connect(
@@ -71,10 +82,13 @@ const FilterTitles = connect(
 /**
  * Companies
  */
-const getCompanies = (users) => users.map(item => item.company).filter(item => item);
+const getCompanies = (users, filter) =>
+  filterUsers(users, filter)
+    .map(item => item.company)
+    .filter(item => item);
 
-const mapStateToPropsCompanies = ({ users }) => ({
-  items: removeDuplicates(getCompanies(users.items))
+const mapStateToPropsCompanies = ({ users, filter }) => ({
+  items: removeDuplicates(getCompanies(users.items, filter))
 });
 
 const FilterCompanies = connect(
@@ -85,10 +99,13 @@ const FilterCompanies = connect(
 /**
  * Departments
  */
-const getDepartments = (users) => users.map(item => item.department).filter(item => item);
+const getDepartments = (users, filter) =>
+  filterUsers(users, filter)
+    .map(item => item.department)
+    .filter(item => item);
 
-const mapStateToPropsDepartments = ({ users }) => ({
-  items: removeDuplicates(getDepartments(users.items))
+const mapStateToPropsDepartments = ({ users, filter }) => ({
+  items: removeDuplicates(getDepartments(users.items, filter))
 });
 
 const FilterDepartments = connect(
