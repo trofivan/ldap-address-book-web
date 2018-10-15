@@ -8,6 +8,7 @@ import {
   SelectCompany,
   SelectDepartment
 } from '../../../containers/Select';
+
 import User from './User';
 
 /**

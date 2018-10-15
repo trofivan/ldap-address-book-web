@@ -1,8 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { actionSetFilter } from '../actions';
-import Select from '../components/Select';
+import { Phones, Companies, Departments, Mails, Titles, Users } from '../components/Selectors';
 
+/**
+ * Reusable functions
+ */
 const removeDuplicates = (items = []) => [...new Set(items)];
 const mapDispatchToProps = (dispatch) => ({
   setFilter: (filterKey, filterValue) => dispatch(actionSetFilter({ [filterKey]: filterValue }))
@@ -14,19 +17,10 @@ const mapDispatchToProps = (dispatch) => ({
 const getUserNames = users => users.map(item => item.name).filter(item => item);
 
 const mapStateToPropsUsers = ({ users }) => ({
-  items: removeDuplicates(getUserNames(users))
+  items: removeDuplicates(getUserNames(users.items))
 });
 
-const Users = ({ items, setFilter }) => (
-  <Select
-    items={items}
-    name={`Имя`}
-    icon={`person`}
-    onItemSelect={(item) => setFilter('name', item)}
-  />
-);
-
-export const SelectUser = connect(
+const SelectUser = connect(
   mapStateToPropsUsers,
   mapDispatchToProps
 )(Users);
@@ -37,19 +31,10 @@ export const SelectUser = connect(
 const getMails = users => users.map((item) => item.mail).filter(item => item);
 
 const mapStateToPropsMail = ({ users }) => ({
-  items: removeDuplicates(getMails(users))
+  items: removeDuplicates(getMails(users.items))
 });
 
-const Mails = ({ items, setFilter }) => (
-  <Select
-    items={items}
-    name={`e-mail`}
-    icon={`envelope`}
-    onItemSelect={(item) => setFilter('mail', item)}
-  />
-);
-
-export const SelectMail = connect(
+const SelectMail = connect(
   mapStateToPropsMail,
   mapDispatchToProps
 )(Mails);
@@ -62,19 +47,10 @@ const getPhones = (users) => users
   .filter(item => item);
 
 const mapStateToPropsPhones = ({ users }) => ({
-  items: removeDuplicates(getPhones(users))
+  items: removeDuplicates(getPhones(users.items))
 });
 
-const Phones = ({ items, setFilter }) => (
-  <Select
-    items={items}
-    name="Телефон"
-    icon="phone"
-    onItemSelect={(item) => setFilter('phone', item)}
-  />
-);
-
-export const SelectPhones = connect(
+const SelectPhones = connect(
   mapStateToPropsPhones,
   mapDispatchToProps
 )(Phones);
@@ -85,19 +61,10 @@ export const SelectPhones = connect(
 const getTitles = (users) => users.map(item => item.title).filter(item => item);
 
 const mapStateToPropsTitles = ({ users }) => ({
-  items: removeDuplicates(getTitles(users))
+  items: removeDuplicates(getTitles(users.items))
 });
 
-const Titles = ({ items, setFilter }) => (
-  <Select
-    items={items}
-    name="Должность"
-    icon="id-number"
-    onItemSelect={(item) => setFilter('title', item)}
-  />
-);
-
-export const SelectTitle = connect(
+const SelectTitle = connect(
   mapStateToPropsTitles,
   mapDispatchToProps
 )(Titles);
@@ -108,23 +75,13 @@ export const SelectTitle = connect(
 const getCompanies = (users) => users.map(item => item.company).filter(item => item);
 
 const mapStateToPropsCompanies = ({ users }) => ({
-  items: removeDuplicates(getCompanies(users))
+  items: removeDuplicates(getCompanies(users.items))
 });
 
-const Companies = ({ items, setFilter }) => (
-  <Select
-    items={items}
-    name="Компания"
-    icon="office"
-    onItemSelect={(item) => setFilter('company', item)}
-  />
-);
-
-export const SelectCompany = connect(
+const SelectCompany = connect(
   mapStateToPropsCompanies,
   mapDispatchToProps
 )(Companies);
-
 
 /**
  * Departments
@@ -132,19 +89,15 @@ export const SelectCompany = connect(
 const getDepartments = (users) => users.map(item => item.department).filter(item => item);
 
 const mapStateToPropsDepartments = ({ users }) => ({
-  items: removeDuplicates(getDepartments(users))
+  items: removeDuplicates(getDepartments(users.items))
 });
 
-const Departments = ({ items, setFilter }) => (
-  <Select
-    items={items}
-    name="Отдел"
-    icon="diagram-tree"
-    onItemSelect={(item) => setFilter('department', item)}
-  />
-);
-
-export const SelectDepartment = connect(
+const SelectDepartment = connect(
   mapStateToPropsDepartments,
   mapDispatchToProps
 )(Departments);
+
+/**
+ * Export HOCs
+ */
+export { SelectUser, SelectPhones, SelectMail, SelectTitle, SelectCompany, SelectDepartment };
