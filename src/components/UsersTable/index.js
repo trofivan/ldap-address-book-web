@@ -8,13 +8,7 @@ import {
   FilterCompanies,
   FilterDepartments
 } from '../../containers/Filters';
-
-import User from './User';
-
-/**
- * @TODO: Temporary fake users
- */
-import MOCK_USERS from '../../mockData/MOCK_USERS_2500';
+import Users from '../../containers/Users';
 
 export default () => (
   <HTMLTable bordered={true} interactive={true} striped={true}>
@@ -41,7 +35,7 @@ export default () => (
     </tr>
     </thead>
     <tbody>
-    {MOCK_USERS.map(user => <User person={user} key={user.id}/>)}
+    <Users/>
     </tbody>
   </HTMLTable>
 );
