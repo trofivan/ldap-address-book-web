@@ -1,7 +1,6 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import { actionSetFilter } from '../actions';
-import { Phones, Companies, Departments, Mails, Titles, Users } from '../components/Selectors';
+import { Phones, Companies, Departments, Mails, Titles, Users } from '../components/Filters';
 
 /**
  * Reusable functions
@@ -20,7 +19,7 @@ const mapStateToPropsUsers = ({ users }) => ({
   items: removeDuplicates(getUserNames(users.items))
 });
 
-const SelectUser = connect(
+const FilterUsers = connect(
   mapStateToPropsUsers,
   mapDispatchToProps
 )(Users);
@@ -34,7 +33,7 @@ const mapStateToPropsMail = ({ users }) => ({
   items: removeDuplicates(getMails(users.items))
 });
 
-const SelectMail = connect(
+const FilterMails = connect(
   mapStateToPropsMail,
   mapDispatchToProps
 )(Mails);
@@ -50,7 +49,7 @@ const mapStateToPropsPhones = ({ users }) => ({
   items: removeDuplicates(getPhones(users.items))
 });
 
-const SelectPhones = connect(
+const FilterPhones = connect(
   mapStateToPropsPhones,
   mapDispatchToProps
 )(Phones);
@@ -64,7 +63,7 @@ const mapStateToPropsTitles = ({ users }) => ({
   items: removeDuplicates(getTitles(users.items))
 });
 
-const SelectTitle = connect(
+const FilterTitles = connect(
   mapStateToPropsTitles,
   mapDispatchToProps
 )(Titles);
@@ -78,7 +77,7 @@ const mapStateToPropsCompanies = ({ users }) => ({
   items: removeDuplicates(getCompanies(users.items))
 });
 
-const SelectCompany = connect(
+const FilterCompanies = connect(
   mapStateToPropsCompanies,
   mapDispatchToProps
 )(Companies);
@@ -92,7 +91,7 @@ const mapStateToPropsDepartments = ({ users }) => ({
   items: removeDuplicates(getDepartments(users.items))
 });
 
-const SelectDepartment = connect(
+const FilterDepartments = connect(
   mapStateToPropsDepartments,
   mapDispatchToProps
 )(Departments);
@@ -100,4 +99,4 @@ const SelectDepartment = connect(
 /**
  * Export HOCs
  */
-export { SelectUser, SelectPhones, SelectMail, SelectTitle, SelectCompany, SelectDepartment };
+export { FilterUsers, FilterPhones, FilterMails, FilterTitles, FilterCompanies, FilterDepartments };

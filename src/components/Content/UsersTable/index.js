@@ -1,13 +1,13 @@
 import React from 'react';
 import { HTMLTable } from '@blueprintjs/core';
 import {
-  SelectUser,
-  SelectMail,
-  SelectPhones,
-  SelectTitle,
-  SelectCompany,
-  SelectDepartment
-} from '../../../containers/Select';
+  FilterUsers,
+  FilterMails,
+  FilterPhones,
+  FilterTitles,
+  FilterCompanies,
+  FilterDepartments
+} from '../../../containers/Filters';
 
 import User from './User';
 
@@ -21,22 +21,22 @@ export default () => (
     <thead>
     <tr>
       <th>
-        <SelectUser/>
+        <FilterUsers/>
       </th>
       <th>
-        <SelectPhones/>
+        <FilterPhones/>
       </th>
       <th>
-        <SelectMail/>
+        <FilterMails/>
       </th>
       <th>
-        <SelectTitle/>
+        <FilterTitles/>
       </th>
       <th>
-        <SelectCompany/>
+        <FilterCompanies/>
       </th>
       <th>
-        <SelectDepartment/>
+        <FilterDepartments/>
       </th>
     </tr>
     </thead>
