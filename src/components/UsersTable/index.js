@@ -7,14 +7,14 @@ import {
   FilterTitles,
   FilterCompanies,
   FilterDepartments
-} from '../../../containers/Filters';
+} from '../../containers/Filters';
 
 import User from './User';
 
 /**
  * @TODO: Temporary fake users
  */
-import MOCK_USERS from '../../../mockData/MOCK_USERS_2500';
+import MOCK_USERS from '../../mockData/MOCK_USERS_2500';
 
 export default () => (
   <HTMLTable bordered={true} interactive={true} striped={true}>
