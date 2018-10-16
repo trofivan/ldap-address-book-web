@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { actionSetFilter } from '../actions';
+import { setFilter, setVisibleUsersCount } from '../actions';
 import { Phones, Companies, Departments, Mails, Titles, Users } from '../components/Filters';
 import filterUsers from '../libs/filterUsers';
 
@@ -8,7 +8,11 @@ import filterUsers from '../libs/filterUsers';
  */
 const removeDuplicates = (items = []) => [...new Set(items)];
 const mapDispatchToProps = (dispatch) => ({
-  setFilter: (filterKey, filterValue) => dispatch(actionSetFilter({ [filterKey]: filterValue }))
+  setFilter: (filterKey, filterValue) => {
+    // TODO: Hardcode default list length value
+    dispatch(setVisibleUsersCount(10));
+    dispatch(setFilter({ [filterKey]: filterValue }));
+  }
 });
 
 /**

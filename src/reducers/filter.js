@@ -1,4 +1,4 @@
-import { FILTER_SET } from '../actions';
+import { SET_FILTER } from '../actions';
 
 const defaultState = {
   name: '',
@@ -11,7 +11,7 @@ const defaultState = {
 
 const filter = (state = defaultState, { type, filter }) => {
   switch (type) {
-    case FILTER_SET:
+    case SET_FILTER:
       return { ...state, ...filter };
     default:
       return state;

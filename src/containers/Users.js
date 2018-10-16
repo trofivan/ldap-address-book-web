@@ -2,13 +2,15 @@ import { connect } from 'react-redux';
 
 import Users from '../components/UsersTable/Users';
 import filterUsers from '../libs/filterUsers';
-
-
-// TODO: hardcode count users per page
-const getVisibleUsers = (...args) => filterUsers(...args).slice(0, 50);
+import { setVisibleUsersCount } from '../actions';
 
 const mapStateToProps = (state) => ({
-  visibleUsers: getVisibleUsers(state.users.items, state.filter)
+  visibleUsers: filterUsers(state.users.items, state.filter),
+  visibleCount: state.users.visibleCount
 });
 
-export default connect(mapStateToProps)(Users);
+const mapDispatchToProps = (dispatch) => ({
+  setVisibleItems: (count) => dispatch(setVisibleUsersCount(count))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Users);
