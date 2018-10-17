@@ -10,7 +10,7 @@ const removeDuplicates = (items = []) => [...new Set(items)];
 const mapDispatchToProps = (dispatch) => ({
   setFilter: (filterKey, filterValue) => {
     // TODO: Hardcode default list length value
-    dispatch(setVisibleUsersCount(10));
+    dispatch(setVisibleUsersCount(20));
     dispatch(setFilter({ [filterKey]: filterValue }));
   }
 });

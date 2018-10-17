@@ -5,7 +5,7 @@ import { SET_VISIBLE_USERS_COUNT } from '../actions';
 // TODO: Hardcode visibleCount
 const defaultState = {
   isFetching: false,
-  visibleCount: 10,
+  visibleCount: 20,
   items: [...MOCK_USERS]
 };
 

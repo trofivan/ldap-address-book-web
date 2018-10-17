@@ -9,6 +9,7 @@ import {
   FilterDepartments
 } from '../../containers/Filters';
 import Users from '../../containers/Users';
+import ButtonMoreUsers from '../../containers/ButtonMoreUsers';
 
 export default () => (
   <HTMLTable bordered={true} interactive={true} striped={true}>
@@ -37,5 +38,12 @@ export default () => (
     <tbody>
     <Users/>
     </tbody>
+    <tfoot>
+    <tr>
+      <td colSpan={6}>
+        <ButtonMoreUsers/>
+      </td>
+    </tr>
+    </tfoot>
   </HTMLTable>
 );
