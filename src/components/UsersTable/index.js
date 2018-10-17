@@ -4,6 +4,8 @@ import {
   FilterUsers,
   FilterMails,
   FilterPhones,
+  FilterIpPhones,
+  FilterMobilePhones,
   FilterTitles,
   FilterCompanies,
   FilterDepartments
@@ -20,6 +22,12 @@ export default () => (
       </th>
       <th>
         <FilterPhones/>
+      </th>
+      <th>
+        <FilterIpPhones/>
+      </th>
+      <th>
+        <FilterMobilePhones/>
       </th>
       <th>
         <FilterMails/>
@@ -40,7 +48,7 @@ export default () => (
     </tbody>
     <tfoot>
     <tr>
-      <td colSpan={6}>
+      <td colSpan={8}>
         <ButtonMoreUsers/>
       </td>
     </tr>

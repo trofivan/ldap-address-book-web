@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { setFilter, setVisibleUsersCount } from '../actions';
-import { Phones, Companies, Departments, Mails, Titles, Users } from '../components/Filters';
+import { Phones, IpPhones, MobilePhones, Companies, Departments, Mails, Titles, Users } from '../components/Filters';
 import filterUsers from '../libs/filterUsers';
 
 /**
@@ -10,7 +10,7 @@ const removeDuplicates = (items = []) => [...new Set(items)];
 const mapDispatchToProps = (dispatch) => ({
   setFilter: (filterKey, filterValue) => {
     // TODO: Hardcode default list length value
-    dispatch(setVisibleUsersCount(20));
+    dispatch(setVisibleUsersCount(30));
     dispatch(setFilter({ [filterKey]: filterValue }));
   }
 });
@@ -33,6 +33,57 @@ const FilterUsers = connect(
 )(Users);
 
 /**
+ * Phones
+ */
+const getPhones = (users, filter) =>
+  filterUsers(users, filter)
+    .map(item => item.phone)
+    .filter(item => item);
+
+const mapStateToPropsPhones = ({ users, filter }) => ({
+  items: removeDuplicates(getPhones(users.items, filter))
+});
+
+const FilterPhones = connect(
+  mapStateToPropsPhones,
+  mapDispatchToProps
+)(Phones);
+
+/**
+ * IP Phones
+ */
+const getIpPhones = (users, filter) =>
+  filterUsers(users, filter)
+    .map(item => item.ipPhone)
+    .filter(item => item);
+
+const mapStateToPropsIpPhones = ({ users, filter }) => ({
+  items: removeDuplicates(getIpPhones(users.items, filter))
+});
+
+const FilterIpPhones = connect(
+  mapStateToPropsIpPhones,
+  mapDispatchToProps
+)(IpPhones);
+
+/**
+ * Mobile Phones
+ */
+const getMobilePhones = (users, filter) =>
+  filterUsers(users, filter)
+    .map(item => item.mobile)
+    .filter(item => item);
+
+const mapStateToPropsMobilePhones = ({ users, filter }) => ({
+  items: removeDuplicates(getMobilePhones(users.items, filter))
+});
+
+const FilterMobilePhones = connect(
+  mapStateToPropsMobilePhones,
+  mapDispatchToProps
+)(MobilePhones);
+
+/**
  * E-Mails
  */
 const getMails = (users, filter) =>
@@ -48,23 +99,6 @@ const FilterMails = connect(
   mapStateToPropsMail,
   mapDispatchToProps
 )(Mails);
-
-/**
- * Phones
- */
-const getPhones = (users, filter) =>
-  filterUsers(users, filter)
-    .reduce((acc, u) => [...acc, u.phone, u.ipPhone, u.mobile], [])
-    .filter(item => item);
-
-const mapStateToPropsPhones = ({ users, filter }) => ({
-  items: removeDuplicates(getPhones(users.items, filter))
-});
-
-const FilterPhones = connect(
-  mapStateToPropsPhones,
-  mapDispatchToProps
-)(Phones);
 
 /**
  * Titles
@@ -120,4 +154,13 @@ const FilterDepartments = connect(
 /**
  * Export HOCs
  */
-export { FilterUsers, FilterPhones, FilterMails, FilterTitles, FilterCompanies, FilterDepartments };
+export {
+  FilterUsers,
+  FilterPhones,
+  FilterIpPhones,
+  FilterMobilePhones,
+  FilterMails,
+  FilterTitles,
+  FilterCompanies,
+  FilterDepartments
+};

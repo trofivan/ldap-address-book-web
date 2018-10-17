@@ -28,6 +28,24 @@ export const Phones = ({ items, setFilter }) => (
   />
 );
 
+export const IpPhones = ({ items, setFilter }) => (
+  <Select
+    items={items}
+    name={'IP'}
+    icon={`panel-table`}
+    onItemSelect={(item) => setFilter('ipPhone', item)}
+  />
+);
+
+export const MobilePhones = ({ items, setFilter }) => (
+  <Select
+    items={items}
+    name={'Мобильный'}
+    icon={`mobile-phone`}
+    onItemSelect={(item) => setFilter('mobile', item)}
+  />
+);
+
 export const Titles = ({ items, setFilter }) => (
   <Select
     items={items}
