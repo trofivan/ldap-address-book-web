@@ -1,12 +1,14 @@
 import { SET_FILTER } from '../actions';
 
 const defaultState = {
-  name: '',
-  phone: '',
-  mail: '',
-  title: '',
-  company: '',
-  department: ''
+  'displayName': '',
+  'telephoneNumber': '',
+  'ipPhone': '',
+  'mobile': '',
+  'mail': '',
+  'title': '',
+  'company': '',
+  'department': ''
 };
 
 const filter = (state = defaultState, { type, filter }) => {

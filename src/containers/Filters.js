@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { setFilter, setVisibleUsersCount } from '../actions';
-import { Phones, IpPhones, MobilePhones, Companies, Departments, Mails, Titles, Users } from '../components/Filters';
+import { DisplayNames, TelephoneNumbers, IpPhones, MobilePhones, Companies, Departments, Mails, Titles,  } from '../components/Filters';
 import filterUsers from '../libs/filterUsers';
 
 /**
@@ -16,41 +16,41 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 /**
- * Names
+ * Display Names
  */
-const getUserNames = (users, filter) =>
+const getDisplayNames = (users, filter) =>
   filterUsers(users, filter)
-    .map(item => item.name)
+    .map(item => item.displayName)
     .filter(item => item);
 
 const mapStateToPropsUsers = ({ users, filter }) => ({
-  items: removeDuplicates(getUserNames(users.items, filter))
+  items: removeDuplicates(getDisplayNames(users.items, filter))
 });
 
-const FilterUsers = connect(
+const FilterDisplayNames = connect(
   mapStateToPropsUsers,
   mapDispatchToProps
-)(Users);
+)(DisplayNames);
 
 /**
- * Phones
+ * TelephoneNumbers
  */
-const getPhones = (users, filter) =>
+const getTelephoneNumbers = (users, filter) =>
   filterUsers(users, filter)
-    .map(item => item.phone)
+    .map(item => item.telephoneNumber)
     .filter(item => item);
 
-const mapStateToPropsPhones = ({ users, filter }) => ({
-  items: removeDuplicates(getPhones(users.items, filter))
+const mapStateToPropsTelephoneNumbers = ({ users, filter }) => ({
+  items: removeDuplicates(getTelephoneNumbers(users.items, filter))
 });
 
 const FilterPhones = connect(
-  mapStateToPropsPhones,
+  mapStateToPropsTelephoneNumbers,
   mapDispatchToProps
-)(Phones);
+)(TelephoneNumbers);
 
 /**
- * IP Phones
+ * IP TelephoneNumbers
  */
 const getIpPhones = (users, filter) =>
   filterUsers(users, filter)
@@ -67,7 +67,7 @@ const FilterIpPhones = connect(
 )(IpPhones);
 
 /**
- * Mobile Phones
+ * Mobile TelephoneNumbers
  */
 const getMobilePhones = (users, filter) =>
   filterUsers(users, filter)
@@ -155,7 +155,7 @@ const FilterDepartments = connect(
  * Export HOCs
  */
 export {
-  FilterUsers,
+  FilterDisplayNames,
   FilterPhones,
   FilterIpPhones,
   FilterMobilePhones,

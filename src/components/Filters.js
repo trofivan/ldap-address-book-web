@@ -1,12 +1,12 @@
 import Select from './Select';
 import React from 'react';
 
-export const Users = ({ items, setFilter }) => (
+export const DisplayNames = ({ items, setFilter }) => (
   <Select
     items={items}
     name={`Имя`}
     icon={`person`}
-    onItemSelect={(item) => setFilter('name', item)}
+    onItemSelect={(item) => setFilter('displayName', item)}
   />
 );
 
@@ -19,12 +19,12 @@ export const Mails = ({ items, setFilter }) => (
   />
 );
 
-export const Phones = ({ items, setFilter }) => (
+export const TelephoneNumbers = ({ items, setFilter }) => (
   <Select
     items={items}
     name="Телефон"
     icon="phone"
-    onItemSelect={(item) => setFilter('phone', item)}
+    onItemSelect={(item) => setFilter('telephoneNumber', item)}
   />
 );
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { HTMLTable } from '@blueprintjs/core';
 import {
-  FilterUsers,
+  FilterDisplayNames,
   FilterMails,
   FilterPhones,
   FilterIpPhones,
@@ -18,7 +18,7 @@ export default () => (
     <thead>
     <tr>
       <th>
-        <FilterUsers/>
+        <FilterDisplayNames/>
       </th>
       <th>
         <FilterPhones/>

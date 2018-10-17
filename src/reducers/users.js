@@ -1,17 +1,21 @@
-// TODO: Add async fetching users
-import MOCK_USERS from '../mockData/MOCK_USERS_2500';
-import { SET_VISIBLE_USERS_COUNT } from '../actions';
+import { FETCH_USERS_ERROR, FETCH_USERS_REQUEST, FETCH_USERS_SUCCESS, SET_VISIBLE_USERS_COUNT } from '../actions';
 
 // TODO: Hardcode visibleCount
 const defaultState = {
   isFetching: false,
+  error: null,
   visibleCount: 30,
-  items: [...MOCK_USERS]
+  items: []
 };
 
-// TODO: Change default state
-const users = (state = defaultState, { type, visibleCount }) => {
+const users = (state = defaultState, { type, visibleCount, users, error }) => {
   switch (type) {
+    case FETCH_USERS_REQUEST:
+      return { ...state, isFetching: true };
+    case FETCH_USERS_SUCCESS:
+      return { ...state, items: users };
+    case FETCH_USERS_ERROR:
+      return { ...state, error };
     case SET_VISIBLE_USERS_COUNT:
       return { ...state, visibleCount };
     default:
